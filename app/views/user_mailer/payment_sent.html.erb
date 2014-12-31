@@ -1,0 +1,8 @@
+<h2 style='line-height:1.4em;'>Your payment was sent!</h2>
+Hello <%= @payment.name %>,
+<br /><br />
+Your payment <strong>$<%= @payment.amount%></strong> to <%= @recipient_user.company_name %> was successfully sent.
+<br /><br />
+<a href="https://payzo.io/payments/<%= @payment.secure_id %>" style='color:#4b93dd;'>View the payment</a>
+<br /><br />
+Thank you!

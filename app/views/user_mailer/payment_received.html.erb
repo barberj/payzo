@@ -1,0 +1,8 @@
+<h2 style='line-height:1.4em;'>New payment from: <%= @payment.name %></h2>
+Hello <%= @user.company_name %>,
+<br /><br />
+<%= @payment.name %> (<%= @payment.email %>) has sent you <strong>$<%= @payment.amount%></strong> with a message: <%= @payment.message %>.
+<br /><br />
+<a href="https://payzo.io/payments/<%= @payment.secure_id %>" style='color:#4b93dd;'>View the payment</a>
+<br /><br />
+Thank you!

@@ -1,0 +1,115 @@
+<header id="main-header" class="transparent-header">
+  <nav id="main-navigation" class="transparent-nav of">
+    <div class="inner">
+      <div class="logo alpha">
+        <a href="/" class="txt">Payzo.io</a>
+      </div>
+      <div class="menu-items omega">
+        <% if current_user %>
+          <a href="/logout">Logout</a>
+        <% else %>
+          <a href="/auth/stripe_connect?scope=read_write">Login</a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section id="landing" class="bg-image home-landing">
+  <div class="center-copy">
+    <h1>Accept payments. <span class="break">No coding. No servers.</span></h1>
+    <div class="desc">
+      <p>The most simple hosted payment form. Connect with <span class="break">Stripe and get started in minutes.</span></p>
+    </div>
+    <div class="cta">
+      <a href="/auth/stripe_connect?scope=read_write" class="cta-btn">Free sign up with Stripe</a>
+    </div>
+    <div class="help">
+      <a href="mailto:payzoio@helpful.io" data-helpful="payzoio">Have a question?</a>
+    </div>
+  </div>
+  <span class="radial-gradient bg-radial-gradient"></span>
+</section>
+
+<section class="color-blocks of">
+  <div class="color-block green-block bg-gear grid-4 no-gutter">
+    <div class="inner">
+      <h3>No Coding, No Servers</h3>
+      <p>Save time and money. No need to hire a developer or even have a website.
+        Just sign up and start accepting payments with fully hosted payment form.</p>
+    </div>
+  </div>
+  <div class="color-block blue-block bg-time grid-4 no-gutter">
+    <div class="inner">
+      <h3>Setup in Minutes</h3>
+      <p>Connect with Stripe, upload your logo and you’re good to go.
+        You’ll get a link you can send to your clients and start accepting payments instantly.</p>
+    </div>
+  </div>
+  <div class="color-block red-block bg-card grid-4 no-gutter">
+    <div class="inner">
+      <h3>Sell Anything</h3>
+      <p>Ideal for freelancers or anyone who wants to accept card payments without the complexity.</p>
+    </div>
+  </div>
+</section>
+
+<section id="screenshot-section" class="bg-dark-blue screenshot-and-left-text section-row vertical-align-middle of parent">
+  <div class="grid-4 prefix-1 centered-xs alpha">
+    <div class="desc">
+      <ul>
+        <li>Your own payment gateway.</li>
+        <li>Customizable link to your form.</li>
+        <li>Set your own logo.</li>
+        <li>Get started in minutes.</li>
+        <li>No code required.</li>
+        <li>No Servers, fully hosted.</li>
+        <li>Connected with Stripe.</li>
+        <li>Get notified when payments happen.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-6 suffix-1 omega">
+    <div class="image">
+      <%= image_tag 'payment.png' %>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section-row of">
+  <div class="inner of">
+    <h3 class="center-txt">Simple Pricing</h3>
+    <div class="pricing-blocks">
+      <div class="pricing-scout grid-3 center-txt">
+        <div class="details">
+          <h3>Scout</h3>
+          <p>Accept up to $200 / month</p>
+          <p><strong>Free</strong></p>
+        </div>
+        <div class="cta">
+          <a href="/auth/stripe_connect?scope=read_write" class="cta-btn">Sign up with Stripe</a>
+        </div>
+      </div>
+      <div class="pricing-lutenant grid-3 center-txt">
+        <div class="details">
+          <h3>Starter</h3>
+          <p>Accept up to $2000 / month</p>
+          <p><strong>$9 / month</strong></p>
+        </div>
+        <div class="cta">
+          <a href="/auth/stripe_connect?scope=read_write" class="cta-btn">Sign up with Stripe</a>
+        </div>
+      </div>
+      <div class="pricing-general grid-3 center-txt">
+        <div class="details">
+          <h3>Pro</h3>
+          <p>Unlimited transactions</p>
+          <p><strong>$15 / month</strong></p>
+        </div>
+        <div class="cta">
+          <a href="/auth/stripe_connect?scope=read_write" class="cta-btn">Sign up with Stripe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

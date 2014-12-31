@@ -1,0 +1,103 @@
+<script type="text/javascript">
+  Stripe.setPublishableKey('<%= @recipient_user.stripe_pub_key %>');
+</script>
+
+<header id="main-header" class="non-transparent-header">
+  <nav id="main-navigation" class="non-transparent-nav of">
+    <div class="inner">
+      <div class="logo alpha">
+        <a href="/" class="txt">Payzo.io</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="main-page">
+  <section id="settings-form" class="gp-settings-form">
+    <div class="inner">
+      <%= form_for @payment, html: { 'data-parsley-validate' => '' } do |f| %>
+        <div class="gp-form-wrapper">
+          <div class="gp-form-header">
+            <div class="gp-form-avatar">
+              <%= image_tag @payment.user.avatar.thumb.url, class: 'user-avatar-circle' %>
+            </div>
+            <div class="gp-form-details">
+              <span class="details-title"><%= @recipient_user.company_name %></span>
+              <span class="details-sub"><%= @recipient_user.company_description %></span>
+            </div>
+          </div>
+          <div class="gp-form-fields of">
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-12 no-gutter">
+                <label>Message for Recipient</label>
+                <%= f.text_field :message, placeholder: 'Message for Recipient' %>
+              </div>
+            </div>
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-6 no-gutter">
+                <label>Your Name</label>
+                <%= f.text_field :name, placeholder: 'Your Name', required: true %>
+              </div>
+              <div class="gp-control-field grid-6 no-gutter-right no-gutter-sm">
+                <label>Email</label>
+                <%= f.email_field :email, placeholder: 'Your Email', required: true %>
+              </div>
+            </div>
+            <div class="gp-control-group clear">
+              <div class="gp-control-field grid-6 no-gutter">
+                <label>Card Number</label>
+                <input type="text" placeholder="Card Number" autocomplete="cc-number" class="cc-num" data-stripe="number" required />
+              </div>
+              <div class="gp-control-field grid-4 no-gutter-right no-gutter-xs grid-3-xs">
+                <label>Expiry Month</label>
+                <input type="text" class="cc-exp" placeholder="MM / YYYY" data-stripe="exp-month" required />
+              </div>
+              <div class="gp-control-field grid-2 no-gutter-right no-gutter-sm">
+                <label>CVC</label>
+                <input type="number" placeholder="CVC" data-stripe="cvc" class="cc-cvc" required />
+              </div>
+              <%= f.hidden_field :user_id %>
+              <span class="clear"></span>
+            </div>
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-6 no-gutter">
+                <label>Amount</label>
+                <% if @remaining_limit %>
+                  <%= f.number_field :amount, placeholder: 'Amount in USD', required: true, min: 1, max: @remaining_limit %>
+                <% else %>
+                  <%= f.number_field :amount, placeholder: 'Amount in USD', required: true, min: 1 %>
+                <% end %>
+              </div>
+              <div class="gp-control-field grid-6 no-gutter-right no-gutter-sm">
+                <% if @recipient_user.current_subscription.paid? && (!@remaining_limit || @remaining_limit > 0) %>
+                  <%= f.submit 'Pay Now', class: 'cta-submit' %>
+                <% end %>
+              </div>
+            </div>
+
+            <% if !@recipient_user.current_subscription.paid? %>
+              <div class="gp-control-group of">
+                This account has been temporarily deactivated.
+              </div>
+            <% else %>
+              <% if @remaining_limit %>
+                <div class="gp-control-group of">
+                  <% if @remaining_limit == 0 %>
+                    Transactions limit of this account has been reached.
+                  <% else %>
+                    You can send up to $<%= @remaining_limit %> to this merchant
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="gp-control-group of">
+              <div class="gp-control-field">
+                <div class="payment-errors"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

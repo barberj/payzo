@@ -1,0 +1,139 @@
+<script>
+  $(function() {
+    Stripe.setPublishableKey('<%= ENV['STRIPE_PUB_KEY'] %>');
+
+    var starter_handler = StripeCheckout.configure({
+      key: '<%= ENV['STRIPE_PUB_KEY'] %>',
+      token: function(token) {
+        $('#upgrade-lutenant-pay').text("Processing...");
+        $.post('/subscriptions', { "plan_id": 1, "stripeToken": token.id })
+          .complete(function(){
+            window.location = '/subscriptions/new';
+          });
+      }
+    });
+
+    // Close Checkout on page navigation
+    $(window).on('popstate', function() {
+      starter_handler.close();
+    });
+
+    var pro_handler = StripeCheckout.configure({
+      key: '<%= ENV['STRIPE_PUB_KEY'] %>',
+      token: function(token) {
+        $('#upgrade-general-pay').text("Processing...");
+        $.post('/subscriptions', { "plan_id": 2, "stripeToken": token.id })
+          .complete(function(){
+            window.location = '/subscriptions/new';
+          });
+      }
+    });
+
+    // Close Checkout on page navigation
+    $(window).on('popstate', function() {
+      pro_handler.close();
+    });
+
+    <% unless @have_customer_details %>
+      $('#upgrade-lutenant-pay').on('click', function(e) {
+        starter_handler.open({
+          name: 'Starter ($9 / month)',
+          description: '$2000 / month in transactions limit',
+          amount: 900,
+          email: "<%= current_user.email %>"
+        });
+        e.preventDefault();
+      });
+
+      $('#upgrade-general-pay').on('click', function(e) {
+        pro_handler.open({
+          name: 'Pro ($15 / month)',
+          description: 'unlimited transactions',
+          amount: 1500,
+          email: "<%= current_user.email %>"
+        });
+        e.preventDefault();
+      });
+    <% end %>
+  })
+</script>
+
+<header id="main-header" class="non-transparent-header">
+  <nav id="main-navigation" class="non-transparent-nav of">
+    <div class="inner">
+      <div class="logo alpha">
+        <a href="/" class="txt">Payzo.io</a>
+      </div>
+      <div class="menu-items omega">
+        <% if current_user %>
+          <a href="/logout">Logout</a>
+        <% else %>
+          <a href="/auth/stripe_connect">Login</a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section id="pricing" class="section-row of">
+  <div class="inner of">
+    <!--<div>
+      <a href="#">Monthly</a> / <a href="#">Annual (10% off)</a>
+    </div>-->
+    <div class="pricing-blocks">
+      <% if flash[:alert] %>
+        <p><%= flash[:alert] %></p><br>
+      <% end %>
+      <div class="pricing-scout grid-3 center-txt<%= ' current' if current_user.current_subscription.plan == 0 %>">
+        <div class="details">
+          <h3>Scout</h3>
+          <p>Accept up to $200 / month</p>
+          <p><strong>Free</strong></p>
+        </div>
+        <div class="cta">
+          <% if current_user.current_subscription.plan != 0 %>
+            <%= link_to @label_free, subscription_url(id: 0), method: :delete, class: 'cta-btn confirm' %>
+          <% else %>
+            <%= link_to @label_free, '#', class: 'cta-btn' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="pricing-lutenant grid-3 center-txt<%= ' current' if current_user.current_subscription.plan == 1 %>">
+        <div class="details">
+          <h3>Starter</h3>
+          <p>Accept up to $2000 / month</p>
+          <p><strong>$9 / month</strong></p>
+        </div>
+        <div class="cta">
+          <% if @have_customer_details %>
+            <% if current_user.current_subscription.plan != 1 %>
+              <%= link_to @label_starter, subscriptions_url(plan_id: 1), method: 'post', class: 'cta-btn confirm', id: 'upgrade-lutenant-pay' %>
+            <% else %>
+              <%= link_to @label_starter, '#', class: 'cta-btn' %>
+            <% end %>
+          <% else %>
+            <a href="#" class="cta-btn" id="upgrade-lutenant-pay"><%= @label_starter %></a>
+          <% end %>
+        </div>
+      </div>
+      <div class="pricing-general grid-3 center-txt<%= ' current' if current_user.current_subscription.plan == 2 %>">
+        <div class="details">
+          <h3>Pro</h3>
+          <p>Unlimited transactions</p>
+          <p><strong>$15 / month</strong></p>
+        </div>
+        <div class="cta">
+          <% if @have_customer_details %>
+            <% if current_user.current_subscription.plan != 2 %>
+              <%= link_to @label_pro, subscriptions_url(plan_id: 2), method: 'post', class: 'cta-btn confirm', id: 'upgrade-general-pay' %>
+            <% else %>
+              <%= link_to @label_pro, '#', class: 'cta-btn' %>
+            <% end %>
+          <% else %>
+            <a href="#" class="cta-btn" id="upgrade-general-pay"><%= @label_pro %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

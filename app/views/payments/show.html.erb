@@ -1,0 +1,33 @@
+<header id="main-header" class="non-transparent-header">
+  <nav id="main-navigation" class="non-transparent-nav of">
+    <div class="inner">
+      <div class="logo alpha">
+        <a href="/" class="txt">Payzo.io</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="main-page" id="payment-show-page">
+  <section id="settings-form" class="gp-settings-form">
+    <div class="inner">
+      <div class="gp-form-wrapper">
+        <div class="gp-form-header">
+          <div class="gp-form-avatar">
+            <%= image_tag 'ok-check.png', class: 'ok-ckeck' %>
+          </div>
+          <div class="gp-form-details title">
+            Payment complete
+          </div>
+        </div>
+        <div class="gp-form-fields of">
+          <div class="details">
+            <%= @payment.name %> paid $<%= @payment.amount %><br>
+            to <%= @payment.user.company_name %><br>
+            <span>on <%= @payment.created_at.strftime("%d %b %Y at %I:%M %p") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

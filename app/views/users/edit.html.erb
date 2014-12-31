@@ -1,0 +1,90 @@
+<header id="main-header" class="non-transparent-header">
+  <nav id="main-navigation" class="non-transparent-nav of">
+    <div class="inner">
+      <div class="logo alpha">
+        <a href="/" class="txt">Payzo.io</a>
+      </div>
+
+      <div class="account-status alpha">
+        <p>
+          <% if current_user.current_subscription.remaining_limit == false %>
+            <strong>Pro (unlimited) plan</strong> <a href="/subscriptions/new" class="blue-link">Change</a>
+          <% else %>
+            <strong>$<%= current_user.current_subscription.transactions_last_32_days.to_i %> used</strong> / $<%= current_user.current_subscription.current_plan_limit %> limit (last 32 days) <a href="/subscriptions/new" class="blue-link">View plans</a>
+          <% end %>
+        </p>
+      </div>
+
+      <div class="menu-items omega">
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="main-page">
+  <section id="settings-form" class="gp-settings-form">
+    <div class="inner">
+      <div class="gp-form-url">
+        Your payment link: <a href="/<%= @user.url_handle %>">https://www.payzo.io/<%= @user.url_handle || "will-be-here" %></a>
+      </div>
+      <%= form_for @user, html: { 'data-parsley-validate' => '' } do |f| %>
+        <%= f.file_field :avatar, class: "hide" %>
+        <div class="gp-form-wrapper">
+          <div class="gp-form-header">
+            <div class="gp-form-avatar">
+            <div id="avatar-image-control" class="user-avatar-circle" style="background-image: url(<%= @user.avatar.thumb.url %>)">&nbsp;</div>
+            </div>
+            <div class="gp-form-details">
+              <span class="details-title"><%= @user.company_name %></span>
+              <span class="details-sub"><%= @user.company_description %></span>
+            </div>
+          </div>
+          <div class="gp-form-fields of">
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-6 no-gutter">
+                <label>Company Name</label>
+                <%= f.text_field :company_name, placeholder: 'Company Name', required: true %>
+              </div>
+              <div class="gp-control-field grid-6 no-gutter-right no-gutter-sm">
+                <label>Your email</label>
+                <%= f.email_field :email, placeholder: 'Your Email', required: true %>
+              </div>
+            </div>
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-12 no-gutter">
+                <label>Your Payment Handle</label>
+                <%= f.text_field :url_handle, placeholder: 'payzo-io/your-payment-handle-in-this-format', pattern: '[a-z-]+', required: true %>
+              </div>
+            </div>
+
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-12 no-gutter">
+                <label>Short company description</label>
+                <%= f.text_field :company_description, placeholder: 'Short company description', maxlength: 115, required: true %>
+              </div>
+            </div>
+            <!--<div class="gp-control-group of">
+              <div class="label-block grid-12 no-gutter">
+                <label>Password Change</label>
+              </div>
+              <div class="gp-control-field grid-6 no-gutter">
+                <label>Password</label>
+                <input type="password" placeholder="Password" />
+              </div>
+              <div class="gp-control-field grid-6 no-gutter-right no-gutter-sm">
+                <label>Password Confirmation</label>
+                <input type="password" placeholder="Password Confirmation" />
+              </div>
+            </div>-->
+            <div class="gp-control-group of">
+              <div class="gp-control-field grid-12 no-gutter">
+                <%= f.submit 'Save', class: 'cta-submit' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
