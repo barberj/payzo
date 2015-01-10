@@ -7,4 +7,8 @@ class HomeController < ApplicationController
       render 'static/homepage'
     end
   end
+
+  def dashboard
+    #
+  end
 end

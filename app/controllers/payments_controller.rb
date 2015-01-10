@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
 
   def index
-    @payments = current_user.payments.all
+    #@payments = current_user.payments.all
   end
 
   def show
