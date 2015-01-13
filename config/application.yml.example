@@ -1,0 +1,8 @@
+# only used on localhost
+STRIPE_CONNECT_CLIENT_ID: "x"
+STRIPE_SECRET: "x"
+S3_ACCESS_KEY: 'a'
+S3_SECRET_KEY: 'b'
+S3_BUCKET: 'c'
+MANDRILL_APIKEY: 'x'
+MANDRILL_USERNAME: 'x'
