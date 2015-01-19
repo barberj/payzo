@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root 'home#router'
-  resources :users, only: [:edit, :update, :destroy]
+  resources :users, only: [:edit, :update, :destroy] do
+    get :initiate_new_demo, on: :collection
+  end
   resources :payments, only: [:index, :show, :create]
   resources :subscriptions, only: [:new, :create, :destroy]
   resources :plans, only: [:new, :index]

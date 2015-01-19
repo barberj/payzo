@@ -69,7 +69,7 @@
                 <% end %>
               </div>
               <div class="gp-control-field grid-6 no-gutter-right no-gutter-sm">
-                <% if @recipient_user.current_subscription.paid? && (!@remaining_limit || @remaining_limit > 0) %>
+                <% if @recipient_user.current_subscription.paid? && (!@remaining_limit || @remaining_limit > 0) && @recipient_user.demo != true %>
                   <%= f.submit 'Pay Now', class: 'cta-submit' %>
                 <% end %>
               </div>
@@ -78,6 +78,10 @@
             <% if !@recipient_user.current_subscription.paid? %>
               <div class="gp-control-group of">
                 This account has been temporarily deactivated.
+              </div>
+            <% elsif @recipient_user.demo == true %>
+              <div class="gp-control-group of">
+                Payment cannot be sent to a demo account.
               </div>
             <% else %>
               <% if @remaining_limit %>

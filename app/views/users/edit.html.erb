@@ -1,19 +1,27 @@
+<% if current_user.demo == true %>
+  <div id="demo-notice">
+  This is a temporary demo account. To finish your registration, <a href="/auth/stripe_connect?scope=read_write">click here</a>.
+  </div>
+<% end %>
+
 <header id="main-header" class="non-transparent-header">
-  <nav id="main-navigation" class="non-transparent-nav of">
+  <nav id="main-navigation" class="non-transparent-nav of<%= ' demo-notice' if current_user.demo == true %>">
     <div class="inner">
       <div class="logo alpha">
         <a href="/" class="txt">Payzo.io</a>
       </div>
 
-      <div class="account-status alpha">
-        <p>
-          <% if current_user.current_subscription.remaining_limit == false %>
-            <strong>Pro (unlimited) plan</strong> <a href="/subscriptions/new" class="blue-link">Change</a>
-          <% else %>
-            <strong>$<%= current_user.current_subscription.transactions_last_32_days.to_i %> used</strong> / $<%= current_user.current_subscription.current_plan_limit %> limit (last 32 days) <a href="/subscriptions/new" class="blue-link">View plans</a>
-          <% end %>
-        </p>
-      </div>
+      <% if current_user.demo != true %>
+        <div class="account-status alpha">
+          <p>
+            <% if current_user.current_subscription.remaining_limit == false %>
+              <strong>Pro (unlimited) plan</strong> <a href="/subscriptions/new" class="blue-link">Change</a>
+            <% else %>
+              <strong>$<%= current_user.current_subscription.transactions_last_32_days.to_i %> used</strong> / $<%= current_user.current_subscription.current_plan_limit %> limit (last 32 days) <a href="/subscriptions/new" class="blue-link">View plans</a>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
 
       <div class="menu-items omega">
         <a href="/logout">Logout</a>

@@ -239,6 +239,26 @@ a {
   width: 100%;
   z-index: 3;
 }
+
+#demo-notice {
+  padding: 13px;
+  background: #419ED3;
+  text-align: center;
+  color: #FFF;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#demo-notice a {
+  color: #FFF;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#main-navigation.demo-notice {
+  position: relative;
+}
+
 /* line 70, ../sass/screen.scss */
 #main-navigation .inner {
   box-sizing: border-box;

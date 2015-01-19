@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  def initiate_new_demo
+    login(User.create!(email: "#{SecureRandom.hex.first(12)}@payzodemo.com",
+                       url_handle: "change-your-demo-payment-url-#{SecureRandom.hex.first(4)}",
+                       company_name: "Demo Company Inc",
+                       company_description: "Demo company description",
+                       demo: true))
+    redirect_to root_url
+  end
+
 private
 
   def set_user

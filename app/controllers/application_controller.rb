@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   before_filter :redirect_to_www
+  before_filter :update_user_last_activity
 
   def login(user)
     session[:current_user_id] = user.id
@@ -31,5 +32,9 @@ private
        redirect_to 'https://www.payzo.io' + request.fullpath, status: 301
       end
     end
+  end
+
+  def update_user_last_activity
+    current_user.update_attribute(:last_active_at, Time.now) if current_user.present?
   end
 end

@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: payzo_development
+  pool: 5
+  username: yourname
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: payzo_test
+  pool: 5
+  username: yourname
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: test-postgres_production
+  pool: 5
+  username: test-postgres
+  password:

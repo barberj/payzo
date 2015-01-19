@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220060601) do
+ActiveRecord::Schema.define(version: 20150119041619) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "payments", force: true do |t|
     t.string   "message"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20141220060601) do
     t.string   "secure_id"
   end
 
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "subscription_payments", force: true do |t|
     t.integer  "subscription_id"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141220060601) do
     t.datetime "updated_at"
   end
 
-  add_index "subscription_payments", ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
+  add_index "subscription_payments", ["subscription_id"], name: "index_subscription_payments_on_subscription_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.integer  "plan"
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141220060601) do
     t.string   "stripe_id"
   end
 
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "url_handle"
@@ -57,6 +60,8 @@ ActiveRecord::Schema.define(version: 20141220060601) do
     t.string   "stripe_access_token"
     t.string   "stripe_customer_id"
     t.string   "stripe_pub_key"
+    t.boolean  "demo",                default: false
+    t.datetime "last_active_at"
   end
 
 end
