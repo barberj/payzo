@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  def self.find_or_create_from_oauth(user, auth)
+  def self.find_or_create_from_oauth(auth, user = nil)
     user = where("stripe_uid" => auth.uid).first_or_initialize if user.nil?
     user.stripe_uid= auth.uid
     user.stripe_access_token = auth.credentials.token
