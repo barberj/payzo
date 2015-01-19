@@ -12,8 +12,17 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  def self.find_or_create_from_oauth(auth, user = nil)
-    user = where("stripe_uid" => auth.uid).first_or_initialize if user.nil?
+  def self.find_or_create_from_oauth(auth, current_user = nil)
+    # user clicked demo dashboard, then connect stripe but they already have account
+    # because have registered and connected stripe before
+    user = where("stripe_uid" => auth.uid).first
+
+    # user is coming from demo account and finishing sign up by connecting stripe
+    user = current_user if user.nil?
+
+    # user is registering from the homepage for the first time
+    user = User.new if user.nil?
+
     user.stripe_uid= auth.uid
     user.stripe_access_token = auth.credentials.token
     user.stripe_pub_key = auth.info.stripe_publishable_key
