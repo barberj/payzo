@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
 
     # user is coming from demo account and finishing sign up by connecting stripe
     user = current_user if user.nil?
-    user.demo = false
 
     # user is registering from the homepage for the first time
     user = User.new if user.nil?
 
+    user.demo = false
     user.stripe_uid= auth.uid
     user.stripe_access_token = auth.credentials.token
     user.stripe_pub_key = auth.info.stripe_publishable_key
