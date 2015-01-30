@@ -4,12 +4,13 @@
       <div class="logo alpha">
         <a href="/" class="txt">Payzo.io</a>
       </div>
+
       <div class="menu-items omega">
-        <% if current_user %>
-          <a href="/logout">Logout</a>
-        <% else %>
-          <a href="/auth/stripe_connect?scope=read_write">Login</a>
-        <% end %>
+      <% if current_user %>
+        <a href="/logout">Logout</a>
+      <% else %>
+        <a href="/auth/stripe_connect?scope=read_write">Login</a>
+      <% end %>
       </div>
     </div>
   </nav>
