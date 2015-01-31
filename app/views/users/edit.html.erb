@@ -1,7 +1,5 @@
 <% if current_user.demo == true %>
-  <div id="demo-notice">
-  This is a temporary demo account. To finish your registration, <a href="/auth/stripe_connect?scope=read_write">click here</a>.
-  </div>
+  <%= render "shared/demo_notice" %>
 <% end %>
 
 <%= render "shared/header" %>
