@@ -104,6 +104,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   text-align: center;
 }
 
+.right-txt {
+  text-align: right;
+}
+
 /* line 14, ../sass/screen.scss */
 .alpha {
   float: left;
@@ -396,6 +400,45 @@ a {
   /* IE6-9 fallback on horizontal gradient */
 }
 
+/* Sidebar and Content
+----------------------------------------------- */
+#sidebar { }
+
+#sidebar-navigation { 
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+#sidebar-navigation li a {
+  display: block;
+  min-height: 20px;
+  padding: 15px 10px;
+  background-color: #F5F5F5; 
+}
+
+#sidebar-navigation li a.active {
+  background-color: #FFF;
+  border-left: 5px solid #419ED3;
+}
+
+#content { 
+}
+
+ul.transaction-history {
+  margin: 20px 0px;
+
+  li {
+    background-color: #FFF;
+    padding: 15px;
+    margin-bottom:1px;
+  }
+
+  .txn-date { color: #767676; }
+  .txn-desc { }
+  .txn-type { color: #767676; }
+  .txn-amount { font-weight: bold; }
+}
+
 /* Color Blocks
 ----------------------------------------------- */
 /* line 214, ../sass/screen.scss */
@@ -531,6 +574,17 @@ a {
   width: 105px;
   height: 105px;
   display: inline-block;
+}
+
+.stat-blocks .stat-block {
+  text-align: center;
+  border: 1px solid #6D6D6D;
+  background-color: #FFF;
+}
+.stat-blocks .stat-block .inner {
+  padding: 30px 15px 10px;
+  min-height: 50px;
+  font-size: 16px;
 }
 
 /* Screenshot Section
