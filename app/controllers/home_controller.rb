@@ -9,6 +9,6 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    #
+      require_login
   end
 end
