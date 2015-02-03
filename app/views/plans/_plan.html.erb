@@ -1,0 +1,16 @@
+<% # partial for @plans index %>
+<li class="parent">
+  <% # plan.name %>
+  <span class="plan-name grid-4">Support Retainer</span>
+  
+  <% # plan.amount %>
+  <span class="plan-amount grid-4 center-txt"
+    ><%= number_to_currency(2000) %> / month</span>
+
+  <% # plan.subscribers.count %>
+  <span class="plan-subscribers grid-4 right-txt"
+    >6 Subscribers</span>
+
+  <% # url_for(plan) %>
+  <span class="grid-12"><a href="#">payzo.io/your-payment-handle/support-retainer</a></span>
+ </li>

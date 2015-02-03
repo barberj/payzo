@@ -7,8 +7,10 @@
   <%= render "shared/header" %>
 
   <div class="main-page container">
-
-    <%= yield(:subheader) %> 
+    
+    <section id="subheader">
+      <%= yield(:subheader) %> 
+    </section>
 
     <section id="sidebar" class="grid-3 grid-12-mobile no-gutter-tablet no-gutter-mobile">
       <%= render "shared/sidebar_navigation" %>
