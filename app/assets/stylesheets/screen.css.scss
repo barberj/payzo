@@ -409,7 +409,7 @@ a {
 
 #sidebar { }
 
-#sidebar-navigation { 
+#sidebar-navigation {
   margin-bottom: 20px;
   margin-right: 20px;
 }
@@ -418,7 +418,7 @@ a {
   display: block;
   min-height: 20px;
   padding: 15px 10px;
-  background-color: #F5F5F5; 
+  background-color: #F5F5F5;
 }
 
 #sidebar-navigation li a.active {
@@ -426,7 +426,7 @@ a {
   border-left: 5px solid #419ED3;
 }
 
-#content { 
+#content {
 }
 
 /* Model index collections */
@@ -442,7 +442,7 @@ ul.index {
 
 .empty-collection {
   padding: 30px;
-  background-color: #F5F5F5; 
+  background-color: #F5F5F5;
   font-size: 16px;
 }
 
@@ -595,13 +595,12 @@ ul.index {
   display: inline-block;
 }
 
-.stat-blocks { 
-  margin-bottom: 20px; 
+.stat-blocks {
+  margin-bottom: 20px;
 }
 
 .stat-blocks .stat-block {
   text-align: center;
-  border: 1px solid #6D6D6D;
   background-color: #FFF;
 }
 .stat-blocks .stat-block .inner {

@@ -8,21 +8,21 @@
 <div id="account-stats" class="stat-blocks parent">
   <div class="stat-block grid-4 grid-12-mobile">
     <div class="inner">
-      <%= current_user.payments.count %> 
+      <%= current_user.payments.count %>
       Payments
     </div>
   </div>
-  
+
   <div class="stat-block grid-4 grid-12-mobile">
     <div class="inner">
-      <%= current_user.subscriptions.count %> 
+      <%= current_user.subscriptions.count %>
       Subscribers
     </div>
   </div>
 
   <div class="stat-block grid-4 grid-12-mobile">
     <div class="inner">
-      <%= number_to_currency(current_user.payments.sum(:amount)) %> 
+      <%= number_to_currency(current_user.payments.sum(:amount)) %>
       Processed
     </div>
   </div>
@@ -38,5 +38,5 @@
   </li>
   <% end %>
 
-  <li class="center-txt"><a href="#">View More</a></li> 
+  <li class="center-txt"><a href="#">View More</a></li>
 </ul>

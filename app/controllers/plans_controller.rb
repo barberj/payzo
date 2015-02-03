@@ -4,8 +4,8 @@ class PlansController < ApplicationController
 
   def index
     #@plans = current_user.plans.all
-    @plans = [{},{},{},{},{}];
-    #@plans = [];
+    @plans = [{},{},{},{},{}]
+    #@plans = []
   end
 
   def new
