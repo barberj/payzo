@@ -1,9 +1,18 @@
 <nav id="sidebar-navigation">
   <ul>
-    <li><a href="#" class="active">Dashboard</a></li>
-    <li><a href="#">Payments</a></li>
-    <li><a href="#">Plans</a></li>
-    <li><a href="#">Subscribers</a></li>
-    <li><a href="#">Setings</a></li>
+
+    <li><%= link_to "Dashboard", {:controller => "home", :action => "dashboard"},
+      :class => current_page?(controller: "home", action: "dashboard") ? "active" : "" %></li>
+
+    <li><%= link_to "Payments", payments_path, 
+      :class => controller.controller_name == 'payments' ? "active" : "" %></li>
+
+    <li><%= link_to "Plans", plans_path, 
+      :class => controller.controller_name == 'plans' ? "active" : "" %></li>
+
+    <% # TODO: add link_tos below once route created %>
+    <li><%= link_to "Subscribers", "#" %></li> 
+    <li><%= link_to "Settings", "#" %></li>
+
   </ul>
 </nav>
