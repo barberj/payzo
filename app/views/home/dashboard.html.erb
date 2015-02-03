@@ -1,58 +1,42 @@
-<% if current_user.demo == true %>
-  <%= render "shared/demo_notice" %>
-<% end %>
-
-<%= render "shared/header" %>
-
-<div class="main-page container">
-  
+<% content_for :subheader do %>
   <div class="grid-12 right-txt">
     <a href="/<%= current_user.url_handle %>"
       >https://www.payzo.io/<%= current_user.url_handle || "will-be-here" %></a>
   </div>
+<% end -%>
 
-  <section id="sidebar" class="grid-3 grid-12-mobile no-gutter-tablet no-gutter-mobile">
-    <%= render "shared/sidebar_navigation" %>
-  </section>
+<div id="account-stats" class="stat-blocks parent">
+  <div class="stat-block grid-4 grid-12-mobile">
+    <div class="inner">
+      <%= current_user.payments.count %> 
+      Payments
+    </div>
+  </div>
+  
+  <div class="stat-block grid-4 grid-12-mobile">
+    <div class="inner">
+      <%= current_user.subscriptions.count %> 
+      Subscribers
+    </div>
+  </div>
 
-  <section id="content" class="grid-9 grid-12-mobile">
-    
-      <div id="account-stats" class="stat-blocks parent">
-        <div class="stat-block grid-4 grid-12-mobile">
-          <div class="inner">
-            <%= current_user.payments.count %> 
-            Payments
-          </div>
-        </div>
-        
-        <div class="stat-block grid-4 grid-12-mobile">
-          <div class="inner">
-            <%= current_user.subscriptions.count %> 
-            Subscribers
-          </div>
-        </div>
-
-        <div class="stat-block grid-4 grid-12-mobile">
-          <div class="inner">
-            <%= number_to_currency(current_user.payments.sum(:amount)) %> 
-            Processed
-          </div>
-        </div>
-      </div>
-
-      <ul class="transaction-history">
-        <% (1..5).each do |i| %>
-        <li class="parent">
-          <span class="txn-date grid-2">21.12.2014</span>
-          <span class="txn-desc grid-6">GS Interactive, s.r.o (abc@gmail.com)</span>
-          <span class="txn-type grid-2">PAID YOU</span>
-          <span class="txn-amount grid-2">$3.50</span>
-        </li>
-        <% end %>
-
-        <li class="center-txt"><a href="#">View More</a></li> 
-
-        </ul>
-
-  </section>
+  <div class="stat-block grid-4 grid-12-mobile">
+    <div class="inner">
+      <%= number_to_currency(current_user.payments.sum(:amount)) %> 
+      Processed
+    </div>
+  </div>
 </div>
+
+<ul class="index transaction-index">
+  <% (1..5).each do |i| %>
+  <li class="parent">
+    <span class="txn-date grid-2">21.12.2014</span>
+    <span class="txn-desc grid-6">GS Interactive, s.r.o (abc@gmail.com)</span>
+    <span class="txn-type grid-2">PAID YOU</span>
+    <span class="txn-amount grid-2">$3.50</span>
+  </li>
+  <% end %>
+
+  <li class="center-txt"><a href="#">View More</a></li> 
+</ul>

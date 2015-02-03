@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :require_login, only: [:dashboard]
 
   def router
     if current_user.present?
@@ -9,6 +10,6 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-      require_login
+    render :layout => "sidebar"
   end
 end

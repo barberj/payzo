@@ -402,6 +402,11 @@ a {
 
 /* Sidebar and Content
 ----------------------------------------------- */
+#subheader {
+  min-height: 30px;
+  a { font-size: 18px; }
+}
+
 #sidebar { }
 
 #sidebar-navigation { 
@@ -424,19 +429,33 @@ a {
 #content { 
 }
 
-ul.transaction-history {
-  margin: 20px 0px;
+/* Model index collections */
+ul.index {
+  margin-bottom: 20px;
 
   li {
     background-color: #FFF;
     padding: 15px;
     margin-bottom:1px;
   }
+}
 
+.empty-collection {
+  padding: 30px;
+  background-color: #F5F5F5; 
+  font-size: 16px;
+}
+
+
+.transaction-index {
   .txn-date { color: #767676; }
   .txn-desc { }
   .txn-type { color: #767676; }
   .txn-amount { font-weight: bold; }
+}
+
+.plan-index {
+  .plan-amount { font-weight: bold; }
 }
 
 /* Color Blocks
@@ -574,6 +593,10 @@ ul.transaction-history {
   width: 105px;
   height: 105px;
   display: inline-block;
+}
+
+.stat-blocks { 
+  margin-bottom: 20px; 
 }
 
 .stat-blocks .stat-block {

@@ -21,7 +21,7 @@
   </head>
   <body>
 
-    <%= yield %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
 
     <footer id="footer">
       <p class="copyright center-txt">

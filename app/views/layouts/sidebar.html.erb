@@ -1,0 +1,27 @@
+<% content_for :content do %>
+  
+  <% if current_user.demo == true %>
+    <%= render "shared/demo_notice" %>
+  <% end %>
+
+  <%= render "shared/header" %>
+
+  <div class="main-page container">
+    
+    <section id="subheader">
+      <%= yield(:subheader) %> 
+    </section>
+
+    <section id="sidebar" class="grid-3 grid-12-mobile no-gutter-tablet no-gutter-mobile">
+      <%= render "shared/sidebar_navigation" %>
+    </section>
+
+    <section id="content" class="grid-9 grid-12-mobile">
+        <%= yield %> 
+    </section>
+
+  </div>
+<% end -%>
+
+<%= render :file => "layouts/application" %>
+

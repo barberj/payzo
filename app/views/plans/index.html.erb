@@ -1,1 +1,16 @@
-index
+<% content_for :subheader do %>
+<div class="grid-9 prefix-3">
+  <%= link_to "New Plan", new_plan_path %>
+</div>
+<% end %>
+
+<% if @plans.length == 0 then %>
+  <p class="empty-collection">Here you can create plans for automated payments
+  for your customers.</p>
+<% else %>
+  <ul class="index plan-index">
+    <%= render :partial => "plan", :collection => @plans, :as => :plan %>
+  </ul>
+<% end %>
+
+</ul>
