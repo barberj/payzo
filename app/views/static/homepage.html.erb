@@ -23,7 +23,8 @@
       <p>The most simple hosted payment form. Connect with <span class="break">Stripe and get started in minutes.</span></p>
     </div>
     <div class="cta">
-      <%= link_to 'See demo dashboard', initiate_new_demo_users_url, class: 'cta-btn', rel: 'nofollow' %>
+      <% link_to 'See demo dashboard', initiate_new_demo_users_url, class: 'cta-btn', rel: 'nofollow' %>
+      <a href="/auth/stripe_connect?scope=read_write" class="cta-btn">Sign up with Stripe</a>
     </div>
     <div class="help">
       <a href="mailto:payzoio@helpful.io" data-helpful="payzoio">Have a question?</a>
